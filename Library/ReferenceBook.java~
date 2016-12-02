@@ -1,0 +1,43 @@
+public class ReferenceBook extends LibraryBook{
+    private String collection;
+
+    public ReferenceBook(){
+	setAuthor("Bob");
+	setTitle("Bob's Book");
+	setISBN("0");
+	setCallNumber("0");
+	setCollection("0");
+    }
+	
+    public ReferenceBook(String a, String t, String I, String CN, String c){
+	setAuthor(a);
+	setTitle(t);
+	setISBN(I);
+	setCallNumber(CN);
+	setCollection(c);
+    }
+
+    public void setCollection(String s){
+	collection = s;
+    }
+
+    public String getCollection(){
+	return collection;
+    }
+
+    public void checkout(String patron, String due){
+	throw new UnsupportedOperationException("cannot check out a reference book");
+    }
+
+    public void returned(){
+	throw new UnsupportedOperationException("reference book could not have been checked out -- return impossible");
+    }
+
+    public String circulationStatus(){
+	return "non-circulating reference book";
+    }
+
+    public String toString(){
+	return super.toString() + "," + getCollection();
+    }
+}
