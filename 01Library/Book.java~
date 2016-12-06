@@ -1,0 +1,45 @@
+public class Book{
+    private String author;
+    private String title;
+    private String ISBN;
+
+    public Book(){
+	author = "Bob";
+	title = "Bob's Book";
+	ISBN = "0";
+    }
+    
+    public Book(String a, String t, String I){
+	author = a;
+	title = t;
+	ISBN = I;
+    }
+    
+    public String getAuthor(){
+	return author;
+    }
+
+    public void setAuthor(String s){
+	author = s;
+    }
+
+    public String getTitle(){
+	return title;
+    }
+
+    public void setTitle(String s){
+	title = s;
+    }
+
+    public String getISBN(){
+	return ISBN;
+    }
+
+    public void setISBN(String s){
+	ISBN = s;
+    }
+
+    public String toString(){
+	return getTitle() + "," + getAuthor() + "," + getISBN();
+    }
+}
