@@ -1,39 +1,73 @@
 public class Barcode implements Comparable<Barcode>{
-// instance variables
-   private String _zip;
-   private int _checkDigit;
 
-// constructors
-//precondtion: _zip.length() = 5 and zip contains only digits.
-//postcondition: throws a runtime exception zip is not the correct length
-//               or zip contains a non digit
-//               _zip and _checkDigit are initialized.
-   public Barcode(String zip){
-       if (zip.length() == 5){
-	   _zip = zip;
-	   _checkDigit = checkSum() % 10;
-       }
-       else{
-	   throw new IllegalArgumentException();
-       }
-   }
+    private String _zip;
+    private int _checkDigit;
 
-// postcondition: Creates a copy of a bar code.
-  public Barcode clone(){
-      clone = new Barcode(_zip);
-  }
+    public Barcode(String zip){
+	if (zip.length() == 5){
+	    _zip = zip;
+	    _checkDigit = checkSum() % 10;
+	}
+	else{
+	    throw new IllegalArgumentException();
+	}
+    }
 
-// postcondition: computes and returns the check sum for _zip
-  private int checkSum(){
-      int numZip = Integer.parsInmt(_zip);
-  }
+    public Barcode clone(){
+	Barcode clone = new Barcode(_zip);
+	return clone;
+    }
 
-//postcondition: format zip + check digit + Barcode 
-//ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
-  public String toString(){}
+    private int checkSum(){
+	int sum = 0;
+	for (int num = Integer.parseInt(_zip); num > 0; num = num / 10){
+	    sum = sum + num % 10;
+	}
+	return sum;
+    }
 
+    public String toString(){
+	String s = "|";
+	for (int barcode = Integer.parseInt(_zip + _checkDigit); barcode > 0; barcode = barcode / 10){
+	    int digit = barcode % 10;
+	    switch(digit){
+	    case 0:
+		s = "||:::" + s;
+		break;
+	    case 1:
+		s = ":::||" + s;
+		break;
+	    case 2:
+		s = "::|:|" + s;
+		break;
+	    case 3:
+		s = "::||:" + s;
+		break;
+	    case 4:
+		s = ":|::|" + s;
+		break;
+	    case 5:
+		s = ":|:|:" + s;
+		break;
+	    case 6:
+		s = ":||::" + s;
+		break;
+	    case 7:
+		s = "|:::|" + s;
+		break;
+	    case 8:
+		s = "|::|:" + s;
+		break;
+	    case 9:
+		s = "|:|::" + s;
+		break;
+	    default:
+	    }
+	}
+	return s;
+    }
 
-// postcondition: compares the zip + checkdigit, in numerical order. 
-  public int compareTo(Barcode other){}
-    
+    public int compareTo(Barcode other){
+	return (Integer.valueOf(_zip + _checkDigit)).compareTo(Integer.valueOf(other._zip + other._checkDigit));
+    }
 }
