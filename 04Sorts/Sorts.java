@@ -10,4 +10,13 @@ public class Sorts{
 
     public static void selectionSort(int[] data){
     }
+
+    public static void insertSort(int[] data){
+	int inTransit;
+	for (int i = 1; i < data.length(); i++){
+	    inTransit = data[i];
+	    for (int n = i - 1; n >= 0; n--){
+		
+
+    
 }
